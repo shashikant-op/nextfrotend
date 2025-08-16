@@ -6,7 +6,7 @@ import { logout } from "@/redux/users/userslice";
 import { userdetails } from "@/redux/users/userdetailsslice";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Rbutton from "@/components/ux/roundbutton";
+import Rbutton from "@/components/UX/roundbutton";
 import AuthPage from "../login/page";
 
 const ProfilePage = () => {
