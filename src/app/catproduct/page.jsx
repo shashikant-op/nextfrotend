@@ -1,7 +1,7 @@
 "use client";
 
 import { useSelector, useDispatch } from "react-redux";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { fetchproducts } from "@/redux/products/productslice";
 import CatCard from "@/components/Cards/catproductcard";
 import Pagination from "react-js-pagination";
@@ -15,7 +15,7 @@ import { IoFilterOutline } from "react-icons/io5";
 import Link from "next/link";
 import { Skeletoncard } from "@/components/Loader/catproductloader";
 
-function Catproduct() {
+function CatproductContent() {
   const searchparams = useSearchParams();
   const router = useRouter();
   const dispatch = useDispatch();
@@ -37,7 +37,6 @@ function Catproduct() {
 
     setCurrPage(pageParam);
 
-    // Only dispatch if category is loaded
     dispatch(
       fetchproducts({
         keyword,
@@ -83,20 +82,19 @@ function Catproduct() {
     params.set("page", "1");
     router.push(`/catproduct?${params.toString()}`);
   };
-  const xxx =true;
 
   return (
     <>
       {/* 🔘 Mobile Filter Toggle */}
-      <div 
-                className="sm:hidden flex justify-between items-center py-2 px-4 bg-white shadow-sm">
-              <div
-               onClick={() => setShowFilter(!showFilter)}
-              >
-                    {showFilter ? (<MdFilterListOff className=" rounded-full text-[24px]" />) : (<IoFilterOutline className="rounded-full text-[24px]" />)}
-                  
-              </div>
-                </div>
+      <div className="sm:hidden flex justify-between items-center py-2 px-4 bg-white shadow-sm">
+        <div onClick={() => setShowFilter(!showFilter)}>
+          {showFilter ? (
+            <MdFilterListOff className="rounded-full text-[24px]" />
+          ) : (
+            <IoFilterOutline className="rounded-full text-[24px]" />
+          )}
+        </div>
+      </div>
 
       {/* 🔍 Filter Section */}
       <div
@@ -182,12 +180,14 @@ function Catproduct() {
           </div>
         </div>
       </div>
- 
+
       {/* 🛍️ Product List */}
       <div className="mt-4">
         {isLoading ? (
-           Array.from({ length: 8 }).map((_, i) => <Skeletoncard key={`sk-${i}`} />)
-      ): (
+          Array.from({ length: 8 }).map((_, i) => (
+            <Skeletoncard key={`sk-${i}`} />
+          ))
+        ) : (
           <div className="mb-3 bg-white p-2 gap-y-1 py-4 justify-evenly flex flex-row flex-wrap">
             {products && products.length > 0 ? (
               products.map((product) => (
@@ -226,4 +226,11 @@ function Catproduct() {
   );
 }
 
-export default Catproduct;
+// ✅ Wrap with Suspense to fix useSearchParams error
+export default function Catproduct() {
+  return (
+    <Suspense fallback={<ProductHomeLoader />}>
+      <CatproductContent />
+    </Suspense>
+  );
+}
