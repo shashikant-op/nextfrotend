@@ -12,6 +12,7 @@ import ProductHomeLoader from "@/components/producthomeloader";
 import { useSearchParams } from "next/navigation";
 import { IoFilterOutline } from "react-icons/io5";
 import { MdFilterListOff } from "react-icons/md";
+import { Suspense } from "react";
 function Allproducts() {
   const searchparams = useSearchParams();
   const keyword = searchparams.get("keyword") || "";
@@ -47,6 +48,8 @@ const handleCategoryClick = (selectedCat) => {
   };
   
   return (
+     <Suspense fallback={<ProductHomeLoader />}>
+      
      <>
           {/* 🔘 Mobile Filter Toggle */}
           <div 
@@ -171,6 +174,7 @@ const handleCategoryClick = (selectedCat) => {
         </div>
       </div>
     </>
+    </Suspense>
   );
 }
 
