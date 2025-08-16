@@ -7,7 +7,7 @@ import { userdetails } from "@/redux/users/userdetailsslice";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Rbutton from "@/components/ux/roundbutton";
-import AuthPage from "@/components/userlogin/login";
+import AuthPage from "../login/page";
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
