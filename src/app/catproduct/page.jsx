@@ -226,11 +226,7 @@ function CatproductContent() {
   );
 }
 
-<<<<<<< HEAD
-// ✅ Wrap with Suspense to fix useSearchParams err
-=======
 // ✅ Wrap with Suspense to fix useSearchParams error
->>>>>>> 7913b188123d5d67013a555afca90ce32e66dcc1
 export default function Catproduct() {
   return (
     <Suspense fallback={<ProductHomeLoader />}>
