@@ -6,8 +6,8 @@ import { logout } from "@/redux/users/userslice";
 import { userdetails } from "@/redux/users/userdetailsslice";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Rbutton from "@/components/ux/roundbutton";
-import AuthPage from "@/components/userlogin/login";
+import AuthPage from "../login/page";
+import Rbutton from "@/components/UX/roundbutton";
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
@@ -27,6 +27,7 @@ const ProfilePage = () => {
     localStorage.removeItem("token");
     router.push("/login");
   };
+  // tokenverification
 
   if (!token) {
     return <AuthPage />;

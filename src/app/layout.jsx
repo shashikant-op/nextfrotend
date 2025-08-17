@@ -6,6 +6,7 @@ import ClientLayout from './client-layout'; // ✅ New client wrapper component
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { ReduxProvider } from './provider';
+import { Analytics } from "@vercel/analytics/next"
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -71,6 +72,7 @@ export default function RootLayout({ children }) {
           <main className="flex-1  ">
             <ClientLayout>
               {children}
+               <Analytics />
             </ClientLayout>
           </main>
           <Footer />
