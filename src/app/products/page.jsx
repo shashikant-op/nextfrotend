@@ -11,6 +11,8 @@ import { useSearchParams } from "next/navigation";
 import { IoFilterOutline } from "react-icons/io5";
 import { MdFilterListOff } from "react-icons/md";
 
+
+
 function Allproducts() {
   const searchparams = useSearchParams();
   const keyword = searchparams.get("keyword") || "";
@@ -46,7 +48,7 @@ function Allproducts() {
 
   return (
     <>
-      {/* 🔘 Mobile Filter Toggle */}
+     {/* //mobile filter */}
       <div className="sm:hidden flex justify-between items-center py-2 px-4 bg-white shadow-sm">
         <div onClick={() => setShowFilter(!showFilter)}>
           {showFilter ? (

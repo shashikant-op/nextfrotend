@@ -4,7 +4,11 @@ import { fetchproducts } from "@/redux/products/productslice";
 import { GoArrowRight } from "react-icons/go";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
+<<<<<<< HEAD
 import Card from "../Cards/card";
+=======
+import Card from "../Cards/card.jsx";
+>>>>>>> 7913b188123d5d67013a555afca90ce32e66dcc1
 import Productsecloader from "../Loader/productsecloader";
 import { useSelector } from "react-redux";
 
