@@ -1,52 +1,62 @@
-
 import { MongoClient } from "mongodb";
 
 export async function getServerSideProps({ res }) {
-  const backendUrl = process.env.MONGODB_URI; // add in .env
-  const client = await MongoClient.connect(backendUrl);
-  const db = client.db("yourdbname"); // replace with your db name
-  const products = await db.collection("products").find({}, { projection: { _id: 1 } }).toArray();
+  const client = await MongoClient.connect(process.env.MONGODB_URI);
+  const db = client.db("yourdbname"); // replace with your actual DB name
+  const products = await db
+    .collection("products")
+    .find({}, { projection: { _id: 1, updatedAt: 1 } }) // include updatedAt if available
+    .toArray();
 
   client.close();
 
-  // Build XML
   const baseUrl = "https://sharmafurnitureworks.com";
-  let urls = `
-    <url>
-      <loc>${baseUrl}/</loc>
-      <changefreq>daily</changefreq>
-      <priority>1.0</priority>
-    </url>
-    <url>
-      <loc>${baseUrl}/products</loc>
-    </url>
-    <url>
-      <loc>${baseUrl}/furniture-shop-sameli-katihar</loc>
-    </url>
-    <url>
-      <loc>${baseUrl}/furniture-buying-guide-bihar</loc>
-    </url>
-    <url>
-      <loc>${baseUrl}/best-furniture-deals-bihar</loc>
-    </url>
-     <url>
-      <loc>${baseUrl}/blog</loc>
-    </url>
-  `;
 
-  products.forEach((product) => {
-    urls += `
+  // Static pages
+  const staticUrls = [
+    { loc: "/", changefreq: "daily", priority: "1.0" },
+    { loc: "/products", changefreq: "daily", priority: "0.9" },
+    { loc: "/furniture-shop-sameli-katihar", changefreq: "weekly", priority: "0.8" },
+    { loc: "/furniture-buying-guide-bihar", changefreq: "weekly", priority: "0.8" },
+    { loc: "/best-furniture-deals-bihar", changefreq: "weekly", priority: "0.8" },
+    { loc: "/blog", changefreq: "weekly", priority: "0.7" },
+  ];
+
+  // Build XML for static pages
+  let urls = staticUrls
+    .map(
+      (u) => `
       <url>
-        <loc>${baseUrl}/product/${product._id}</loc>
+        <loc>${baseUrl}${u.loc}</loc>
+        <changefreq>${u.changefreq}</changefreq>
+        <priority>${u.priority}</priority>
+        <lastmod>${new Date().toISOString().split("T")[0]}</lastmod>
+      </url>`
+    )
+    .join("");
+
+  // Build XML for products
+  urls += products
+    .map(
+      (p) => `
+      <url>
+        <loc>${baseUrl}/product/${p._id}</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
-      </url>`;
-  });
+        <lastmod>${
+          p.updatedAt
+            ? new Date(p.updatedAt).toISOString().split("T")[0]
+            : new Date().toISOString().split("T")[0]
+        }</lastmod>
+      </url>`
+    )
+    .join("");
 
+  // Full sitemap
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    ${urls}
-  </urlset>`;
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      ${urls}
+    </urlset>`;
 
   res.setHeader("Content-Type", "text/xml");
   res.write(sitemap);
@@ -58,4 +68,3 @@ export async function getServerSideProps({ res }) {
 export default function Sitemap() {
   return null;
 }
-
