@@ -14,7 +14,7 @@ import { MdFilterListOff } from "react-icons/md";
 import { IoFilterOutline } from "react-icons/io5";
 import Link from "next/link";
 import { Skeletoncard } from "@/components/Loader/catproductloader";
-
+//cart prodcut
 function CatproductContent() {
   const searchparams = useSearchParams();
   const router = useRouter();

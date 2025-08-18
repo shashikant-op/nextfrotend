@@ -8,8 +8,7 @@ import Card from "../Cards/card";
 import Productsecloader from "../Loader/productsecloader";
 import { useSelector } from "react-redux";
 
-
-
+//product sec
 export default function Productsec({category}){
 const dispatch=useDispatch();
 
