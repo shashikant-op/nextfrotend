@@ -1,51 +1,61 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Homepage -->
-  <url>
-    <loc>https://sharmafurnitureworks.com/</loc>
-    <priority>1.0</priority>
-    <changefreq>daily</changefreq>
-  </url>
+import { MongoClient } from "mongodb";
 
-  <!-- Products listing page -->
-  <url>
-    <loc>https://sharmafurnitureworks.com/products</loc>
-    <priority>0.9</priority>
-    <changefreq>daily</changefreq>
-  </url>
+export async function getServerSideProps({ res }) {
+  const backendUrl = process.env.MONGODB_URI; // add in .env
+  const client = await MongoClient.connect(backendUrl);
+  const db = client.db("yourdbname"); // replace with your db name
+  const products = await db.collection("products").find({}, { projection: { _id: 1 } }).toArray();
 
-  <!-- Example product pages -->
-  <url>
-    <loc>https://sharmafurnitureworks.com/furniture-shop-sameli-katihar</loc>
-    <priority>0.8</priority>
-    <changefreq>weekly</changefreq>
-  </url>
+  client.close();
 
-  <url>
-    <loc>https://sharmafurnitureworks.com/furniture-buying-guide-bihar</loc>
-    <priority>0.8</priority>
-    <changefreq>weekly</changefreq>
-  </url>
+  // Build XML
+  const baseUrl = "https://sharmafurnitureworks.com";
+  let urls = `
+    <url>
+      <loc>${baseUrl}/</loc>
+      <changefreq>daily</changefreq>
+      <priority>1.0</priority>
+    </url>
+    <url>
+      <loc>${baseUrl}/products</loc>
+    </url>
+    <url>
+      <loc>${baseUrl}/furniture-shop-sameli-katihar</loc>
+    </url>
+    <url>
+      <loc>${baseUrl}/furniture-buying-guide-bihar</loc>
+    </url>
+    <url>
+      <loc>${baseUrl}/best-furniture-deals-bihar</loc>
+    </url>
+     <url>
+      <loc>${baseUrl}/blog</loc>
+    </url>
+  `;
 
-  <url>
-    <loc>https://www.sharmafurnitureworks.com/best-furniture-deals-bihar</loc>
-    <priority>0.8</priority>
-    <changefreq>weekly</changefreq>
-  </url>
+  products.forEach((product) => {
+    urls += `
+      <url>
+        <loc>${baseUrl}/product/${product._id}</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+      </url>`;
+  });
 
-  <!-- Blog page -->
-  <url>
-    <loc>https://www.sharmafurnitureworks.com/blog</loc>
-    <priority>0.8</priority>
-    <changefreq>weekly</changefreq>
-  </url>
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    ${urls}
+  </urlset>`;
 
-  <!-- Contact page -->
-  <url>
-    <loc>https://www.sharmafurnitureworks.com/contact</loc>
-    <priority>0.7</priority>
-    <changefreq>monthly</changefreq>
-  </url>
+  res.setHeader("Content-Type", "text/xml");
+  res.write(sitemap);
+  res.end();
 
-</urlset>
+  return { props: {} };
+}
+
+export default function Sitemap() {
+  return null;
+}
+
