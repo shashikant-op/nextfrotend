@@ -1,0 +1,14 @@
+# robots.txt for EcomNext
+
+User-agent: *
+Allow: /
+
+# Block admin and API routes from indexing
+Disallow: /admin/
+Disallow: /api/
+
+# Optional: Set crawl delay for non-Google bots
+Crawl-delay: 10
+
+# Sitemap location for search engines
+Sitemap: https://sharmafurnitureworks.com/sitemap.xml

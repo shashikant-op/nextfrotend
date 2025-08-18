@@ -27,6 +27,9 @@ export const metadata = {
     'wooden furniture Katihar',
     'wooden furniture Purnea',
     'wooden furniture Bhagalpur',
+    "wooden bed",
+    "wooden sofa"
+
   ],
   openGraph: {
     type: 'website',
@@ -109,7 +112,8 @@ export default function RootLayout({ children }) {
               "founder": {
                 "@type": "Person",
                 "name": "Mohan Sharma",
-                "jobTitle": "Owner"
+                "jobTitle": "Owner",
+                
               },
               "employee": [
                 { "@type": "Person", "name": "Ravikant Sharma", "jobTitle": "Manager" },
@@ -120,6 +124,7 @@ export default function RootLayout({ children }) {
                 {
                   "@type": "ContactPoint",
                   "telephone": "+91-8051429677",
+                  "telephone2": "+91-9006056800",
                   "contactType": "customer service",
                   "areaServed": "IN",
                   "availableLanguage": ["English", "Hindi"]
