@@ -16,10 +16,8 @@ export const metadata = {
     template: '%s | Sharma Furniture Works',
   },
   icons: {
-  icon: [
-       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-  ],
-  apple: '/apple-touch-icon.png',
+  icon:'/favicon.ico',
+      
 },
   description:
     'Buy premium handcrafted Sheesham & Rosewood furniture online in India. Luxury wooden furniture with custom designs, durable craftsmanship, and timeless elegance for your home and office.',
