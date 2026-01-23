@@ -9,9 +9,7 @@ import { Analytics } from "@vercel/analytics/next"
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const viewport = {
-   themeColor:"#8200DA",
-}
+
 export const metadata = {
   metadataBase: new URL('https://sharmafurnitureworks.com'),
   title: {
@@ -73,7 +71,7 @@ export const metadata = {
     images: [
       {
         url: '/favicon.ico',
-        width: 1200,f
+        width: 1200,
         height: 630,
         alt: 'Sharma Furniture Works - Luxury Wooden Furniture',
       },
@@ -108,11 +106,13 @@ export const metadata = {
 };
 
 export const viewport = {
+  themeColor: "#8200DA",
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
-  userScalable: false,
+  userScalable: false
 };
+
 
 export default function RootLayout({ children }) {
   return (
@@ -144,7 +144,7 @@ export default function RootLayout({ children }) {
               "founder": {
                 "@type": "Person",
                 "name": "Mohan Sharma",
-                "jobTitle": "Owner",
+                "jobTitle": "Owner"
                 
               },
               "employee": [
