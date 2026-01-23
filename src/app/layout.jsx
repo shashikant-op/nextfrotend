@@ -18,6 +18,7 @@ export const metadata = {
   },
   icons: {
   icon:'/favicon.ico',
+  apple: '/apple-touch-icon.png',
       
 },
   description:
@@ -70,7 +71,7 @@ export const metadata = {
       'Premium handcrafted Sheesham & Rosewood furniture in India. Explore luxury designs for home & office.',
     images: [
       {
-        url: '/favicon.ico',
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Sharma Furniture Works - Luxury Wooden Furniture',
