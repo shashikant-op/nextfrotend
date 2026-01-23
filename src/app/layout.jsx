@@ -9,6 +9,9 @@ import { Analytics } from "@vercel/analytics/next"
 
 const inter = Inter({ subsets: ['latin'] });
 
+export const viewport = {
+   themeColor:"#8200DA",
+}
 export const metadata = {
   metadataBase: new URL('https://sharmafurnitureworks.com'),
   title: {
@@ -20,7 +23,7 @@ export const metadata = {
       
 },
   description:
-    'Buy premium handcrafted Sheesham & Rosewood furniture online in India. Luxury wooden furniture with custom designs, durable craftsmanship, and timeless elegance for your home and office.',
+    'Looking for the best furniture shop in Sameli, Katihar? Sharma Furniture offers handcrafted Sheesham & Rosewood furniture, custom wedding furniture, wooden beds and sofas at the best price. Government-certified shop trusted across Katihar, Purnea & Bhagalpur.',
   keywords: [
     'Sheesham furniture',
     'Rosewood furniture',
@@ -69,8 +72,8 @@ export const metadata = {
       'Premium handcrafted Sheesham & Rosewood furniture in India. Explore luxury designs for home & office.',
     images: [
       {
-        url: '/logo.png',
-        width: 1200,
+        url: '/favicon.ico',
+        width: 1200,f
         height: 630,
         alt: 'Sharma Furniture Works - Luxury Wooden Furniture',
       },
