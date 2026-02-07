@@ -23,13 +23,13 @@ useEffect(() => {
   console.log("product",products);
     return(
         <div>
-            <div className="p-1 ">
-        <div className="flex start-0 text-black text-[18px] px-1 bg-transparent p-1">
-          <div className="producttitle w-full flex flex-row justify-between px-3 p-2 mb-2">
+            <div className=" rounded  ">
+        <div className="flex start-0 text-black text-[18px]  bg-transparent p-1">
+          <div className="producttitle w-full flex flex-row justify-between  p-2 ">
             <div>
-              <span className="!w-full ">Similar product</span>
+               <h2 className="text-xl  font-bold ">Related Products</h2>
             </div>
-            <div>
+            <div className="font-bold  text-2xl">
               <Link href={`/catproduct?category=${encodeURIComponent(category)}`} className="cursor-pointer">
                 <GoArrowRight />
               </Link>
@@ -41,7 +41,7 @@ useEffect(() => {
           <Productsecloader />
         ) : (
           <div className="w-full custom-scrollbar overflow-x-auto whitespace-nowrap scrollbar-hide">
-            <div className="flex gap-4 p-2 !w-full justify-start">
+            <div className="flex gap-2 p-1 !w-full justify-start">
               {products && products.length > 0 ? (
                 products.map((product) => (
                   <div key={product._id}>

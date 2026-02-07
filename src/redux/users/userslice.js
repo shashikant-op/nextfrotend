@@ -6,7 +6,7 @@ export const loginuser = createAsyncThunk(
   "auth/login",
   async (credential, { rejectWithValue }) => {
     try {
-      const backendurl = process.env.NEXT_PUBLIC_BACKEND_URL;
+      const backendurl = process.env.NEXT_PUBLIC_BACKEND_URL ;
       const response = await axios.post(`${backendurl}/login`, credential);
       return response.data;
     } catch (error) {

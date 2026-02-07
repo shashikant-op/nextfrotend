@@ -10,11 +10,9 @@ import "@/styles/scroll.css";
 import Slider from "@mui/material/Slider";
 import ProductHomeLoader from "@/components/producthomeloader";
 import { useSearchParams, useRouter } from "next/navigation";
-import { MdFilterListOff } from "react-icons/md";
-import { IoFilterOutline } from "react-icons/io5";
-import Link from "next/link";
+import { MdFilterListOff, MdOutlineTune } from "react-icons/md";
 import { Skeletoncard } from "@/components/Loader/catproductloader";
-//cart prodcut
+
 function CatproductContent() {
   const searchparams = useSearchParams();
   const router = useRouter();
@@ -24,27 +22,16 @@ function CatproductContent() {
   const [showFilter, setShowFilter] = useState(false);
   const [currPage, setCurrPage] = useState(1);
 
-  const { isLoading, resultperpage, productcount } = useSelector(
-    (state) => state.products
-  );
+  const { isLoading, resultperpage, productcount } = useSelector((state) => state.products);
   const products = useSelector((state) => state.products.data);
 
-  // 🚀 Main fetch effect
   useEffect(() => {
     const keyword = searchparams?.get("keyword") || "";
     const category = searchparams?.get("category")?.toLowerCase() || "";
     const pageParam = parseInt(searchparams?.get("page")) || 1;
-
     setCurrPage(pageParam);
 
-    dispatch(
-      fetchproducts({
-        keyword,
-        currpage: pageParam,
-        price,
-        category,
-      })
-    );
+    dispatch(fetchproducts({ keyword, currpage: pageParam, price, category }));
   }, [searchparams, price, dispatch]);
 
   const setpage = (pageNumber) => {
@@ -63,11 +50,10 @@ function CatproductContent() {
   };
 
   const handleCategoryClick = (selectedCat) => {
-    const category = searchparams?.get("category")?.toLowerCase() || "";
-    const isSame = category === selectedCat.toLowerCase();
     const params = new URLSearchParams(searchparams.toString());
-
-    if (isSame) {
+    const currentCat = searchparams?.get("category")?.toLowerCase() || "";
+    
+    if (currentCat === selectedCat.toLowerCase()) {
       params.delete("category");
     } else {
       params.set("category", selectedCat.toLowerCase());
@@ -76,161 +62,140 @@ function CatproductContent() {
     router.push(`/catproduct?${params.toString()}`);
   };
 
-  const handleClearAll = () => {
-    const params = new URLSearchParams(searchparams.toString());
-    params.delete("category");
-    params.set("page", "1");
-    router.push(`/catproduct?${params.toString()}`);
-  };
-
   return (
-    <>
-      {/* 🔘 Mobile Filter Toggle */}
-      <div className="sm:hidden flex justify-between items-center py-2 px-4 bg-white shadow-sm">
-        <div onClick={() => setShowFilter(!showFilter)}>
-          {showFilter ? (
-            <MdFilterListOff className="rounded-full text-[24px]" />
-          ) : (
-            <IoFilterOutline className="rounded-full text-[24px]" />
-          )}
+    <div className="max-w-7xl lg:pt-10   mx-auto px-4 sm:px-6 lg:px-8 py-2">
+      {/* 🏷️ Header Section */}
+        
+        
+        {/* Mobile Filter Toggle */}
+        <button 
+          onClick={() => setShowFilter(!showFilter)}
+          className="sm:hidden flex mb-4 items-center justify-center gap-2 px-6 py-3 bg-slate-900 text-white rounded-full text-sm font-medium transition-transform active:scale-95"
+        >
+          {showFilter ? <MdFilterListOff size={20} /> : <MdOutlineTune size={20} />}
+          {showFilter ? "Close Filters" : "Filter & Sort"}
+        </button>
+
+      <div className="flex flex-col  lg:flex-row gap-8">
+        {/* 🔍 Sidebar Filter Section (Desktop) */}
+        <aside className={`${
+          showFilter ? "block" : "hidden"
+        } sm:block w-full lg:w-64 space-y-2 animate-in fade-in slide-in-from-left-4 duration-300`}>
+          
+          {/* Price Range */}
+          
+          <div className="hidden flex justify-center items-center  mb-10 sm:block lg:block">
+          <h1 className="text-3xl font-light text-slate-900 tracking-tight">
+            Our <span className="font-semibold">Collection</span>
+          </h1>
+          <p className="text-slate-500 text-sm mt-2">Showing {products?.length || 0} of {productcount} handcrafted pieces</p>
         </div>
-      </div>
-
-      {/* 🔍 Filter Section */}
-      <div
-        className={`transition-all duration-300 ease-in-out overflow-hidden ${
-          showFilter ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
-        } sm:max-h-full sm:opacity-100 sm:block bg-white border-t sm:border-none`}
-      >
-        <div className="w-full py-5 bg-gray-100 shadow-sm sm:shadow-none rounded-lg flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between border border-gray-200 sm:border-none">
-          {/* 🟢 Price Range */}
-          <div className="flex flex-col gap-2 px-4 w-full sm:w-[55%]">
-            <label className="text-base font-semibold text-gray-800">
-              Price Range
-            </label>
-            <div className="w-full sm:w-72">
-              <Slider
-                value={price}
-                onChange={handlePriceChange}
-                valueLabelDisplay="auto"
-                min={0}
-                max={200000}
-                sx={{ color: "#7C3AED" }}
-              />
-              <div className="flex justify-between text-sm text-gray-600 mt-1">
-                <span>₹{price[0]}</span>
-                <span>₹{price[1]}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* 🟣 Category Pills */}
-          <div className="w-full sm:w-[45%]">
-            <div className="flex justify-between items-center mb-2 px-3">
-              <label className="text-base font-semibold text-gray-800">
-                Categories
-              </label>
-              <button
-                onClick={handleClearAll}
-                className="text-sm text-red-500 hover:underline"
-              >
-                Clear All
-              </button>
-            </div>
-
-            <div className="overflow-x-auto scrollbar-hide">
-              <div className="flex flex-wrap h-[72px] w-max gap-2 content-start pr-4 px-3">
-                {[
-                  "Living",
-                  "Study",
-                  "Decoration",
-                  "Bed",
-                  "Door",
-                  "Puja",
-                  "Chair",
-                  "Kitchen",
-                  "Cabinet",
-                  "Dining",
-                  "Shelf",
-                  "Office",
-                  "Wall",
-                  "Ceiling",
-                ].map((categoryItem) => {
-                  const activeCategory =
-                    searchparams?.get("category")?.toLowerCase() || "";
-                  const isActive =
-                    activeCategory === categoryItem.toLowerCase();
-
-                  return (
-                    <span
-                      key={categoryItem}
-                      onClick={() => handleCategoryClick(categoryItem)}
-                      className={`flex-shrink-0 whitespace-nowrap cursor-pointer px-3 py-1 rounded-full text-sm transition-all duration-200 border ${
-                        isActive
-                          ? "bg-purple-800 text-white border-purple-800"
-                          : "bg-gray-100 hover:bg-purple-800 hover:text-white"
-                      }`}
-                    >
-                      {categoryItem}
-                    </span>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* 🛍️ Product List */}
-      <div className="mt-4">
-        {isLoading ? (
-          Array.from({ length: 8 }).map((_, i) => (
-            <Skeletoncard key={`sk-${i}`} />
-          ))
-        ) : (
-          <div className="mb-3 bg-white p-2 gap-y-1 py-4 justify-evenly flex flex-row flex-wrap">
-            {products && products.length > 0 ? (
-              products.map((product) => (
-                <div key={product._id} className="w-full">
-                  <CatCard product={product} />
-                </div>
-              ))
-            ) : (
-              <p className="text-gray-500 text-center py-6 w-full">
-                No products found.
-              </p>
-            )}
-          </div>
-        )}
-
-        {/* 📄 Pagination */}
-        {productcount > resultperpage && (
-          <div className="pagination">
-            <Pagination
-              activePage={currPage}
-              itemsCountPerPage={resultperpage}
-              totalItemsCount={productcount}
-              pageRangeDisplayed={5}
-              nextPageText="Next →"
-              prevPageText="← Prev"
-              onChange={setpage}
-              itemClass="page-item"
-              linkClass="page-link"
-              activeClass="activepageclass"
-              activeLinkClass="activepagelink"
+          <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+            <h3 className="text-sm font-bold text-slate-900 uppercase tracking-widest mb-6">Price Range</h3>
+            <Slider
+              value={price}
+              onChange={handlePriceChange}
+              valueLabelDisplay="auto"
+              min={0}
+              max={200000}
+              sx={{ 
+                color: "#475569", // Slate 600
+                '& .MuiSlider-thumb': { backgroundColor: '#1e293b' },
+                '& .MuiSlider-track': { border: 'none' },
+              }}
             />
+            <div className="flex justify-between text-xs font-mono text-slate-500 mt-2">
+              <span>₹{price[0].toLocaleString()}</span>
+              <span>₹{price[1].toLocaleString()}</span>
+            </div>
           </div>
-        )}
+
+          {/* Categories */}
+          <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+            <h3 className="text-sm font-bold text-slate-900 uppercase tracking-widest mb-6">Categories</h3>
+            <div className="flex flex-row  overflow-scroll scrollbar-hide gap-2  lg:flex-col">
+              {[
+                "Living", "Study", "Bed", "Dining", "Office", "Kitchen", "Puja"
+              ].map((categoryItem) => {
+                const isActive = searchparams?.get("category")?.toLowerCase() === categoryItem.toLowerCase();
+                return (
+                  <button
+                    key={categoryItem}
+                    onClick={() => handleCategoryClick(categoryItem)}
+                    className={`text-left px-4 py-2 rounded-lg text-sm transition-all duration-200 ${
+                      isActive 
+                        ? "bg-slate-900 text-white font-medium" 
+                        : "text-slate-600 hover:bg-slate-50 hover:pl-6"
+                    }`}
+                  >
+                    {categoryItem}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </aside>
+
+        {/* 🛍️ Product Grid */}
+        <main className="flex-1">
+          {isLoading ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <Skeletoncard key={`sk-${i}`} />
+              ))}
+            </div>
+          ) : (
+            <>
+              {products && products.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-3">
+                  {products.map((product) => (
+                    <div key={product._id} className="transition-transform duration-500 hover:-translate-y-2">
+                      <CatCard product={product} />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex flex-col items-center justify-center py-20 bg-white rounded-3xl border border-dashed border-slate-200">
+                  <p className="text-slate-400 font-light text-lg">No pieces found in this selection.</p>
+                  <button 
+                    onClick={() => router.push('/catproduct')}
+                    className="mt-4 text-slate-900 font-semibold underline underline-offset-4"
+                  >
+                    Clear all filters
+                  </button>
+                </div>
+              )}
+
+              {/* 📄 Pagination */}
+              {productcount > resultperpage && (
+                <div className="mt-16 flex justify-center">
+                  <Pagination
+                    activePage={currPage}
+                    itemsCountPerPage={resultperpage}
+                    totalItemsCount={productcount}
+                    pageRangeDisplayed={5}
+                    onChange={setpage}
+                    itemClass="page-item mx-1"
+                    linkClass="page-link w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 text-slate-600 hover:bg-slate-900 hover:text-white transition-colors"
+                    activeClass="activepageclass"
+                    activeLinkClass="!bg-slate-900 !text-white !border-slate-900"
+                  />
+                </div>
+              )}
+            </>
+          )}
+        </main>
       </div>
-    </>
+    </div>
   );
 }
 
-// ✅ Wrap with Suspense to fix useSearchParams error
 export default function Catproduct() {
   return (
     <Suspense fallback={<ProductHomeLoader />}>
-      <CatproductContent />
+      <div className="min-h-screen bg-[#FDFDFD]">
+        <CatproductContent />
+      </div>
     </Suspense>
   );
 }

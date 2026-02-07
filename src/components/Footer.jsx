@@ -1,51 +1,84 @@
 "use client";
 
 import React from "react";
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaWhatsapp, FaMapMarkerAlt } from "react-icons/fa";
 import Link from "next/link";
 
 function Footer() {
   return (
-    <footer className="!w-full bg-purple-900 text-white px-4 py-8">
-      <div className="max-w-7xl mx-auto flex flex-col  justify-center sm:flex-row  sm:justify-between gap-6">
+    /* Background set to #8000DB with White text */
+    <footer className="w-full bg-[#8000DB] text-white px-6 py-12">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between gap-12 lg:gap-8">
 
-        {/* Company Info */}
-        <div className="sm:basis-1/3 w-full flex  justify-center flex-col sm:flex-none">
-          <span className="text-xl font-bold mb-2">Sharma Furniture Works</span>
-          <span className="text-sm text-gray-400">
-            Your one-stop shop for everything you need. Affordable. Fast. Reliable.
-          </span>
+        {/* Brand & Narrative */}
+        <div className="lg:max-w-xs space-y-4">
+          <h2 className="text-[22px] font-bold tracking-tighter uppercase text-white">
+            Sharma <span className="font-light opacity-80">Furniture Works</span>
+          </h2>
+          <p className="text-[14px] leading-relaxed opacity-70 font-light">
+            Crafting contemporary pieces with a matte finish and visible soul. 
+            Focused on transparency, durability, and the pale beauty of natural grain.
+          </p>
+          <div className="flex items-center gap-2 text-[12px] opacity-80 font-medium italic">
+            <FaMapMarkerAlt className="text-white" />
+            Sameli, Katihar, Bihar
+          </div>
         </div>
 
-        {/* Quick Links */}
-        <div className="sm:basis-1/3 w-full ">
-          <h3 className="text-md font-semibold mb-2">Quick Links</h3>
-          <ul className="text-sm text-gray-400 space-y-1">
-            <li><Link href="/" className="hover:text-white">Home</Link></li>
-            <li><Link href="/shop" className="hover:text-white">Shop</Link></li>
-            <li><Link href="/about" className="hover:text-white">About</Link></li>
-            <li><Link href="/blog" className="hover:text-white">Blog</Link></li>
-            <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
-            <a href="/furniture-shop-sameli-katihar" className="text-amber-700 hover:underline">Furniture Shop in Sameli Katihar</a>
-            <a href="/furniture-buying-guide-bihar" className="text-amber-700 hover:underline">Furniture Buying Guide in Bihar</a>
-            <a href="/best-furniture-deals-bihar" className="text-amber-700 hover:underline">Best Furniture Deals in Bihar</a>
-          </ul>
+        {/* Navigation - Clean Grid */}
+        <div className="grid grid-cols-2 gap-8 lg:gap-16">
+          <div>
+            <h3 className="text-[11px] uppercase tracking-[0.2em] font-bold text-white mb-5 opacity-90">
+              Discovery
+            </h3>
+            <ul className="text-[14px] opacity-70 space-y-3 font-light">
+              <li><Link href="/" className="hover:opacity-100 hover:translate-x-1 transition-all inline-block">Home</Link></li>
+              <li><Link href="/shop" className="hover:opacity-100 hover:translate-x-1 transition-all inline-block">Collections</Link></li>
+              <li><Link href="/about" className="hover:opacity-100 hover:translate-x-1 transition-all inline-block">Our Process</Link></li>
+              <li><Link href="/contact" className="hover:opacity-100 hover:translate-x-1 transition-all inline-block">Visit Workshop</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-[11px] uppercase tracking-[0.2em] font-bold text-white mb-5 opacity-90">
+              Resources
+            </h3>
+            <ul className="text-[13px] opacity-70 space-y-3 font-light">
+              <li><Link href="/furniture-shop-sameli-katihar" className="hover:underline decoration-white/30">Local Guide</Link></li>
+              <li><Link href="/furniture-buying-guide-bihar" className="hover:underline decoration-white/30">Buying Guide</Link></li>
+              <li><Link href="/best-furniture-deals-bihar" className="hover:underline decoration-white/30">Seasonal Deals</Link></li>
+            </ul>
+          </div>
         </div>
 
-        {/* Socials */}
-        <div className="sm:basis-1/3 w-full">
-          <h3 className="text-md font-semibold mb-2">Follow Us</h3>
-          <div className="flex space-x-4 text-gray-400 text-lg">
-            <a href="#" className="hover:text-white" aria-label="Facebook"><FaFacebookF /></a>
-            <a href="#" className="hover:text-white" aria-label="Twitter"><FaTwitter /></a>
-            <a href="https://www.instagram.com/sharma.furnitureworks?igsh=aDRrbzN5bTR5eDF4" className="hover:text-white" aria-label="Instagram"><FaInstagram /></a>
-            <a href="#" className="hover:text-white" aria-label="LinkedIn"><FaLinkedinIn /></a>
+        {/* Connectivity */}
+        <div className="space-y-6">
+          <h3 className="text-[11px] uppercase tracking-[0.2em] font-bold text-white opacity-90">
+            Social Studio
+          </h3>
+          <div className="flex space-x-4">
+            <a href="#" className="p-3 rounded-full border border-white/20 hover:bg-white hover:text-[#8000DB] transition-all shadow-lg"><FaFacebookF size={14} /></a>
+            <a href="https://www.instagram.com/sharma.furnitureworks" className="p-3 rounded-full border border-white/20 hover:bg-white hover:text-[#8000DB] transition-all shadow-lg"><FaInstagram size={14} /></a>
+            <a href="#" className="p-3 rounded-full border border-white/20 hover:bg-white hover:text-[#8000DB] transition-all shadow-lg"><FaWhatsapp size={14} /></a>
+          </div>
+          <div className="pt-2">
+            <p className="text-[10px] opacity-60 uppercase tracking-widest leading-loose">
+              Support: <br />
+              <span className="text-white font-medium">info@sharmafurniture.com</span>
+            </p>
           </div>
         </div>
       </div>
 
-      <div className="mt-6 pt-4 border-t border-gray-700 text-center text-xs text-gray-500">
-        © {new Date().getFullYear()} Sharma Furniture Works. All rights reserved.
+      {/* Footer Base - High Contrast Split */}
+      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p className="text-[11px] tracking-tight opacity-60">
+          © {new Date().getFullYear()} SHARMA FURNITURE WORKS. DEFINED BY GRAIN.
+        </p>
+        <div className="flex gap-6 text-[10px] uppercase tracking-widest opacity-60">
+          <a href="#" className="hover:opacity-100">Privacy Policy</a>
+          <a href="#" className="hover:opacity-100">Terms of Service</a>
+        </div>
       </div>
     </footer>
   );
