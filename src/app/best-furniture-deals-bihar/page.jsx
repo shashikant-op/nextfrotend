@@ -1,125 +1,168 @@
 "use client";
 import Head from "next/head";
+import { 
+  FaPercent, FaAward, FaArrowRight, FaTruck, FaCouch, 
+  FaBed, FaUtensils, FaBriefcase, FaPhoneAlt, FaMapMarkerAlt 
+} from "react-icons/fa";
 
 export default function BestFurnitureDealsBihar() {
+  const brandColor = "#8000DB";
+
+  const deals = [
+    {
+      title: "Signature Sofas",
+      off: "40% OFF",
+      desc: "Premium fabrics & hand-carved Teak accents.",
+      icon: <FaCouch />,
+      tag: "Limited"
+    },
+    {
+      title: "Master Beds",
+      off: "FESTIVE DEAL",
+      desc: "Solid wood with 'Thin White Spirit Polish' (Matte).",
+      icon: <FaBed />,
+      tag: "Best Seller"
+    },
+    {
+      title: "Dining Sets",
+      off: "SAVE BIG",
+      desc: "High-transparency finishes for natural grain.",
+      icon: <FaUtensils />,
+      tag: "Custom"
+    },
+    {
+      title: "Office Ergo",
+      off: "CORP RATES",
+      desc: "Workstations designed for productivity.",
+      icon: <FaBriefcase />,
+      tag: "Quick Ship"
+    }
+  ];
+
   return (
-    <>
+    <div className="min-h-screen bg-[#FBFBFF] text-slate-900 font-sans pb-24 lg:pb-0">
       <Head>
-        <title>Best Furniture Deals in Bihar – Sharma Furniture Work’s</title>
-        <meta
-          name="description"
-          content="Exclusive furniture deals in Bihar! Sofas, beds, dining tables, wardrobes, and office furniture at Sharma Furniture Work’s – Sameli, Katihar."
-        />
-        <meta
-          name="keywords"
-          content="furniture deals Bihar, sofa discount Katihar, bed sale Purnea, dining table offer Bhagalpur, wardrobe Patna, office furniture Motihari"
-        />
+        <title>Furniture Deals Bihar | Sharma Furniture</title>
       </Head>
 
-      <main className="max-w-6xl mx-auto px-4 py-12 font-sans">
-        {/* Header */}
-        <header className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">
-            🎉 Best Furniture Deals in Bihar
-          </h1>
-          <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
-            Affordable, high-quality furniture for{" "}
-            <strong className="text-secondary">every home in Bihar</strong>.  
-            Sharma Furniture Work’s – trusted by families in Katihar, Purnea, Bhagalpur, Patna, Motihari, Pothiya, and Kursela.
-          </p>
+      {/* --- WRAPPER FOR RESPONSIVE LAYOUT --- */}
+      <div className="flex flex-col lg:flex-row lg:h-screen lg:overflow-hidden">
+        
+        {/* --- LEFT SIDE: HERO & BRAND (Fixed on Desktop) --- */}
+        <header 
+          style={{ backgroundColor: brandColor }} 
+          className="relative text-white pt-16 pb-20 lg:pt-0 lg:pb-0 px-6 rounded-b-[3rem] lg:rounded-none shadow-2xl overflow-hidden lg:w-2/5 lg:flex lg:flex-col lg:justify-center lg:items-center"
+        >
+          <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -mr-10 -mt-10 blur-2xl lg:w-80 lg:h-80 lg:opacity-20" />
+          
+          <div className="relative z-10 text-center lg:px-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-[10px] font-bold tracking-widest uppercase mb-4 lg:mb-8">
+              🔥 Exclusive Bihar Offers
+            </div>
+            <h1 className="text-4xl lg:text-7xl font-black mb-4 lg:mb-8 leading-tight">
+              Premium <br className="hidden lg:block"/> <span className="text-purple-300">Deals</span>
+            </h1>
+            <p className="text-sm lg:text-lg opacity-90 font-light max-w-xs mx-auto lg:max-w-md">
+              Master Craftsmanship by <strong>Mohan Sharma</strong>. <br className="hidden lg:block"/> Serving Katihar, Purnea, and Patna.
+            </p>
+
+            {/* Hidden on Mobile, Visible on Large Screen: Detailed Brand Trust */}
+            <div className="hidden lg:grid grid-cols-2 gap-4 mt-12 text-left">
+               <div className="p-4 bg-white/5 border border-white/10 rounded-2xl">
+                  <FaAward className="text-purple-300 mb-2" />
+                  <p className="text-xs font-bold uppercase tracking-wider">Matte Polish</p>
+                  <p className="text-[10px] opacity-60">5-10% Reflection Spirit Polish</p>
+               </div>
+               <div className="p-4 bg-white/5 border border-white/10 rounded-2xl">
+                  <FaTruck className="text-purple-300 mb-2" />
+                  <p className="text-xs font-bold uppercase tracking-wider">Bihar Wide</p>
+                  <p className="text-[10px] opacity-60">White-glove delivery network</p>
+               </div>
+            </div>
+          </div>
         </header>
 
-        {/* Deals Grid */}
-        <section className="grid md:grid-cols-2 gap-8 mb-16">
-          {[
-            {
-              title: "🔥 Sofa Sets – Up to 40% Off",
-              desc: "Luxury sofas in fabric, leather, and wood designs – perfect for your Bihar home."
-            },
-            {
-              title: "🛏 Beds & Wardrobes – Festive Discounts",
-              desc: "Solid wood and modern designs with seasonal discounts in Katihar & nearby cities."
-            },
-            {
-              title: "🍽 Dining Tables – Special Offers",
-              desc: "From compact 4-seaters to grand 8-seaters – available across Bihar with delivery."
-            },
-            {
-              title: "💼 Office Furniture – Best Prices",
-              desc: "Ergonomic chairs, workstations, and storage – boosting productivity & style."
-            }
-          ].map((deal, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg hover:scale-[1.02] transition duration-300 border border-gray-100"
-            >
-              <h2 className="text-xl font-semibold text-primary mb-2">{deal.title}</h2>
-              <p className="text-gray-600">{deal.desc}</p>
+        {/* --- RIGHT SIDE: CONTENT (Scrollable on Desktop) --- */}
+        <main className="px-5 -mt-8 lg:mt-0 relative z-20 lg:w-3/5 lg:overflow-y-auto lg:py-20 lg:px-16 no-scrollbar">
+          
+          <div className="lg:max-w-3xl">
+            {/* Deals Section */}
+            <h3 className="hidden lg:block text-2xl font-black mb-8 text-slate-800">Current Offers</h3>
+            <section className="space-y-4 mb-12 lg:grid lg:grid-cols-2 lg:gap-6 lg:space-y-0">
+              {deals.map((deal, i) => (
+                <div
+                  key={i}
+                  className="bg-white rounded-3xl p-5 shadow-lg shadow-purple-900/5 border border-slate-50 flex items-center lg:items-start lg:flex-col gap-5 lg:gap-4 active:scale-95 transition-transform hover:border-purple-200"
+                >
+                  <div 
+                    style={{ backgroundColor: `${brandColor}10`, color: brandColor }}
+                    className="w-16 h-16 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0"
+                  >
+                    {deal.icon}
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between mb-1">
+                      <span style={{ color: brandColor }} className="text-[10px] font-black uppercase tracking-tighter">
+                        {deal.off}
+                      </span>
+                      <span className="text-[8px] font-bold text-slate-400 uppercase bg-slate-100 px-2 py-0.5 rounded-full">
+                        {deal.tag}
+                      </span>
+                    </div>
+                    <h2 className="text-md lg:text-lg font-bold text-slate-800 leading-none mb-1">{deal.title}</h2>
+                    <p className="text-[11px] lg:text-xs text-slate-500 font-light lg:line-clamp-2">{deal.desc}</p>
+                  </div>
+                  <FaArrowRight className="text-slate-300 text-sm lg:hidden" />
+                </div>
+              ))}
+            </section>
+
+            {/* Desktop Only: Experience Highlight */}
+            <div className="hidden lg:block mb-12 p-8 bg-purple-50 rounded-[2.5rem] border border-purple-100">
+               <h4 className="font-bold text-purple-900 mb-2">The Thin White Spirit Polish</h4>
+               <p className="text-sm text-purple-700 font-light">Available for all custom beds and dining sets. We emphasize high grain visibility for a pale, cool ash tone that suits modern Bihar interiors.</p>
             </div>
-          ))}
-        </section>
 
-        {/* Why Choose Us */}
-        <section className="mb-16 text-center">
-          <h2 className="text-3xl font-bold text-primary mb-6">
-            Why Choose Sharma Furniture Work’s?
-          </h2>
-          <ul className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto text-gray-700">
-            <li className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-              ✅ Serving Bihar for over 20 years
-            </li>
-            <li className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-              🎨 Custom designs to match your style
-            </li>
-            <li className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-              🚚 Delivery across Bihar
-            </li>
-            <li className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-              🛠 Family-owned with expert craftsmanship
-            </li>
-          </ul>
-        </section>
-
-        {/* FAQ Section */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold text-primary text-center mb-8">💬 FAQs</h2>
-          <div className="max-w-3xl mx-auto space-y-6">
-            {[
-              {
-                q: "Where can I get the best furniture deals in Bihar?",
-                a: "At Sharma Furniture Work’s, Sameli, Katihar – with offers across Bihar."
-              },
-              {
-                q: "Do you offer home delivery?",
-                a: "Yes, we deliver to Katihar, Purnea, Bhagalpur, Patna, Motihari, Pothiya, Kursela."
-              },
-              {
-                q: "Are discounts available year-round?",
-                a: "We have seasonal offers, festival discounts, and clearance sales."
-              }
-            ].map((faq, i) => (
-              <div key={i} className="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
-                <p className="font-semibold text-secondary">{faq.q}</p>
-                <p className="text-gray-600">{faq.a}</p>
+            {/* Why Us? */}
+            <section className="mb-12">
+              <h3 className="text-lg lg:text-2xl font-black mb-4 px-1">Why Us?</h3>
+              <div className="flex lg:grid lg:grid-cols-2 gap-4 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 no-scrollbar">
+                {[
+                  { t: "20+ Years", d: "Legacy of trust in Sameli." },
+                  { t: "Matte Polish", d: "Expert 5-10% reflection." },
+                  { t: "Free Delivery", d: "To all major Bihar cities." },
+                  { t: "Customized", d: "Your design, our wood." }
+                ].map((item, idx) => (
+                  <div key={idx} className="min-w-[140px] lg:min-w-0 bg-slate-900 text-white p-5 lg:p-8 rounded-3xl">
+                    <p className="font-bold text-sm lg:text-base text-purple-400 mb-1">{item.t}</p>
+                    <p className="text-[10px] lg:text-xs text-slate-400 leading-tight">{item.d}</p>
+                  </div>
+                ))}
               </div>
-            ))}
+            </section>
           </div>
-        </section>
+        </main>
+      </div>
 
-        {/* Call to Action */}
-        <section className="text-center bg-primary text-white rounded-2xl p-8 shadow-lg">
-          <h2 className="text-2xl font-bold mb-4">🚚 Visit Us or Order Today!</h2>
-          <p className="mb-6 text-lg">
-            Don’t miss out on the <strong>best furniture deals in Bihar</strong>.
-          </p>
+      {/* --- FOOTER: FLOATING ON MOBILE, FIXED ON LARGE SCREEN --- */}
+      <div className="fixed bottom-6 lg:bottom-10 left-6 right-6 lg:left-auto lg:right-10 z-50 flex justify-center">
+        <div className="bg-slate-900/90 backdrop-blur-xl border border-white/10 p-2 rounded-full shadow-2xl flex items-center gap-2 w-full max-w-sm lg:w-96">
           <a
-            href="/furniture-shop-sameli-katihar"
-            className=" hover:bg-secondary text-white px-6 py-3 rounded-lg text-lg font-semibold transition"
+            href="https://maps.google.com"
+            className="flex-1 flex items-center justify-center gap-2 text-white py-3 rounded-full text-xs font-bold"
           >
-            📍 Visit Sharma Furniture Work’s
+            <FaMapMarkerAlt className="text-red-400" /> Sameli
           </a>
-        </section>
-      </main>
-    </>
+          <div className="w-[1px] h-6 bg-white/10" />
+          <a
+            href="tel:+919006056800"
+            style={{ backgroundColor: brandColor }}
+            className="flex-[2] flex items-center justify-center gap-2 text-white py-3 rounded-full text-xs font-black shadow-lg"
+          >
+            <FaPhoneAlt /> CALL RAVIKANT
+          </a>
+        </div>
+      </div>
+    </div>
   );
 }

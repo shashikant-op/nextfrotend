@@ -5,21 +5,17 @@ import WhyChoose from "./whychoose";
 
 const About=()=>{
     return(
-    <div>
-        
+    <div className="select-none">
         <div>
             <Aboutsec />
         </div>
-        <div>
+        <div className="select-none">
             <WhyChoose />
           
         </div>
-        <div>
+        <div className="select-none">
               <Exp />
         </div>
-        <div>
-            <Wedo />
-        </div> 
     </div>
     )
 }

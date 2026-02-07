@@ -7,7 +7,7 @@ import Link from "next/link";
 function Footer() {
   return (
     /* Background set to #8000DB with White text */
-    <footer className="w-full bg-[#8000DB] text-white px-6 py-12">
+    <footer className="w-full select-none bg-[#8000DB] text-white px-6 py-12">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between gap-12 lg:gap-8">
 
         {/* Brand & Narrative */}
@@ -58,8 +58,8 @@ function Footer() {
           </h3>
           <div className="flex space-x-4">
             <a href="#" className="p-3 rounded-full border border-white/20 hover:bg-white hover:text-[#8000DB] transition-all shadow-lg"><FaFacebookF size={14} /></a>
-            <a href="https://www.instagram.com/sharma.furnitureworks" className="p-3 rounded-full border border-white/20 hover:bg-white hover:text-[#8000DB] transition-all shadow-lg"><FaInstagram size={14} /></a>
-            <a href="#" className="p-3 rounded-full border border-white/20 hover:bg-white hover:text-[#8000DB] transition-all shadow-lg"><FaWhatsapp size={14} /></a>
+            <a href="https://www.instagram.com/sharmafurnituresameli/" className="p-3 rounded-full border border-white/20 hover:bg-white hover:text-[#8000DB] transition-all shadow-lg"><FaInstagram size={14} /></a>
+            <a href="https://wa.me/+919006056800" className="p-3 rounded-full border border-white/20 hover:bg-white hover:text-[#8000DB] transition-all shadow-lg"><FaWhatsapp size={14} /></a>
           </div>
           <div className="pt-2">
             <p className="text-[10px] opacity-60 uppercase tracking-widest leading-loose">

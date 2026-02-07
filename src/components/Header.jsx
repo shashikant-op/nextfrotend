@@ -36,9 +36,23 @@ const Header = () => {
     <header className="header  !text-white !bg-purple-700">
       {/* Logo */}
       <div className="header__logo items-center">
-        <Link href="/">
-          <h2 className="text-[15px] sm:text-2xl !mr-4 font-bold cursor-pointer">Opendoor</h2>
-        </Link>
+        <Link href="/" className="group flex items-center gap-3">
+  {/* The Monogram: A luxury staple */}
+ 
+
+  {/* The Typography */}
+  <div className="flex    p-1 flex-col">
+    <span className="font-serif text-sm tracking-[0.15em] leading-none text-white font-medium uppercase transition-all duration-300 group-hover:tracking-[0.2em]">
+      SHARMA
+    </span>
+    <div className="flex items-center gap-2 mt-1">
+     <span className="text-[9px] font-light tracking-[0.45em] text-purple-100 uppercase" 
+      style={{ fontFamily: "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif" }}>
+  Furniture Works
+</span>
+    </div>
+  </div>
+</Link>
       </div>
 
       {/* Navigation Links */}

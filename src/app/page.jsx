@@ -43,10 +43,10 @@ const {Loading,setLoading}=useState(true);
     <div className="bg-white">
     <Allproduct /> 
     </div>
-    <div>
+    <div className="select-none">
       <About />
     </div>
-    <div>
+    <div className="select-none">
       <City />
     </div>
     </main>
