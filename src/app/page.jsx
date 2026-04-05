@@ -29,7 +29,7 @@ const {Loading,setLoading}=useState(true);
 
   return (
     
-    <main className=" flex gap-2 flex-col " >
+    <main className=" flex gap-y-2 flex-col " >
       <div className="  flex  h-198 lg:px-2 flex-row justify-between items-start  bg-gray-200">
         <div className="hidden lg:flex  bg-white items-center ">
           <Categoryfilter />
@@ -50,7 +50,7 @@ const {Loading,setLoading}=useState(true);
         </div>
       </div>
     </div>
-      <div className="select-none">
+      <div className=" mt-10 select-none">
         <About />
       </div>
       <div className="select-none">
