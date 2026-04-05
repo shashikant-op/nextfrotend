@@ -29,7 +29,7 @@ const {Loading,setLoading}=useState(true);
 
   return (
     
-    <main className=" flex flex-col " >
+    <main className=" flex gap-2 flex-col " >
       <div className="  flex  h-198 lg:px-2 flex-row justify-between items-start  bg-gray-200">
         <div className="hidden lg:flex  bg-white items-center ">
           <Categoryfilter />
