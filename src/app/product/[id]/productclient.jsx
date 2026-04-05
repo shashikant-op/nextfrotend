@@ -27,7 +27,7 @@ const Product = () => {
   const params = useParams();
   const router = useRouter();
   const id = params?.id;
-
+  const backendurl = process.env.NEXT_PUBLIC_BACKEND_URL;
   const { isLoading, error, data } = useSelector((state) => state.product);
   const product = data?.product;
   const category = product?.category?.[0];
@@ -54,6 +54,19 @@ const Product = () => {
     dispatch(addToCartAsync({ id: product._id, quantity }));
     toast.success("Added to cart!");
   };
+
+
+  const handleDelete = async (id) => {
+    await axios.delete(`${backendurl}/admin/product/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+
+    toast.success("Product deleted successfully!");
+
+  };
+
 
   const handleWhatsAppShare = () => {
     const pageUrl = window.location.href;
