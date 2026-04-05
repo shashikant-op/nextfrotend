@@ -28,11 +28,18 @@ const {Loading,setLoading}=useState(true);
   console.log("product",products);
 
   return (
-    <main className="flex bg-gray-200  gap-y-1 flex-col overflow-hidden">
+    
+    <main className=" flex flex-col " >
+      <div className="  flex  h-198 px-2 flex-row justify-between items-start  bg-gray-200">
+       <div className="hidden lg:flex  bg-white items-center ">
+        <Categoryfilter />
+        </div>
+      <div className="flex bg-gray-200  gap-y-1 flex-col overflow-hidden md:w-[1125px]">
+
       <div>
         <Locationsec />
       </div>
-      <div className="flex bg-white items-center ">
+      <div className="flex  bg-white items-center lg:hidden ">
         <Categoryfilter />
       </div> 
       
@@ -43,12 +50,16 @@ const {Loading,setLoading}=useState(true);
     <div className="bg-white">
     <Allproduct /> 
     </div>
-    <div className="select-none">
+    
+      </div>
+      </div>
+      <div className="select-none">
       <About />
     </div>
     <div className="select-none">
       <City />
     </div>
+
     </main>
   );
 }

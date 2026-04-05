@@ -150,16 +150,25 @@ const Product = () => {
             </div>
 
             {/* Offers Section */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="p-3 rounded-lg border border-indigo-100 bg-indigo-50/50">
-                <p className="text-xs font-bold text-indigo-700 uppercase tracking-wider">Special Offer</p>
-                <p className="text-sm font-medium text-slate-800">Wedding Discount: ₹1,000 Off</p>
-              </div>
-              <div className="p-3 rounded-lg border border-purple-100 bg-purple-50/50">
-                <p className="text-xs font-bold text-purple-700 uppercase tracking-wider">Bulk Savings</p>
-                <p className="text-sm font-medium text-slate-800">Buy 2+ items, get 5% OFF</p>
-              </div>
-            </div>
+           <div className="grid grid-cols-2 gap-3">
+  <div className="p-3 rounded-lg border border-indigo-100 bg-indigo-50/50">
+    <p className="text-xs font-bold text-indigo-700 uppercase tracking-wider">
+      Special Offer
+    </p>
+    <p className="text-sm font-medium text-slate-800">
+      Wedding Discount: ₹1,000 Off
+    </p>
+  </div>
+
+  <div className="p-3 rounded-lg border border-purple-100 bg-purple-50/50">
+    <p className="text-xs font-bold text-purple-700 uppercase tracking-wider">
+      Bulk Savings
+    </p>
+    <p className="text-sm font-medium text-slate-800">
+      Buy 2+ items, get 5% OFF
+    </p>
+  </div>
+</div>
 
             {/* Trust Badges */}
             <div className="grid grid-cols-4 gap-2 py-4 border-y border-slate-100">
