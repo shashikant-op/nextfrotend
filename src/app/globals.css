@@ -6,30 +6,40 @@ html, body {
   padding: 0;
 }
 
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-.foregroundcolor{
-  background-color: #1f2937;
-}
-@keyframes scroll {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+
+/* पूरे website का scrollbar */
+/* 🌟 Premium Purple Scrollbar */
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 6px;
 }
 
-.animate-scroll {
-  display: inline-flex;
-  animation: scroll 15s linear infinite;
+::-webkit-scrollbar-track {
+  background: transparent; /* clean look */
 }
 
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #a78bfa, #7c3aed);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Smooth hover effect */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #8b5cf6, #6d28d9);
+}
+
+/* Optional: slight glow on active scroll */
+::-webkit-scrollbar-thumb:active {
+  background: #6d28d9;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #7c3aed transparent;
+}
 /* globals.css */
 
 :root {
