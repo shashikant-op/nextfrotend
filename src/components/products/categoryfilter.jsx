@@ -75,7 +75,7 @@ export default function Categoryfilter() {
       </div>
 
       {/* Desktop Sidebar */}
-      <div className="bg-white p-6 w-80 h-194 hidden lg:flex flex-col border border-slate-100 shadow-sm">
+      <div className="bg-white p-6 w-80 h-193 hidden lg:flex flex-col border border-slate-100 shadow-sm">
         <h3 className="text-xs font-bold text-slate-900 uppercase tracking-[0.2em] mb-6">
           Categories
         </h3>
