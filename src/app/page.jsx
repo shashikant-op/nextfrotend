@@ -30,11 +30,11 @@ const {Loading,setLoading}=useState(true);
   return (
     
     <main className=" flex gap-y-2 flex-col " >
-      <div className="  flex  h-198 lg:px-2 flex-row justify-between items-start  bg-gray-200">
+      <div className="  flex  h-198  overflow-hidden lg:px-2 flex-row justify-between items-start  bg-gray-200">
         <div className="hidden lg:flex  bg-white items-center ">
           <Categoryfilter />
           </div>
-        <div className="flex bg-gray-200  gap-y-1 flex-col overflow-x-hidden md:w-[1125px]">
+        <div className="flex  h-210   gap-y-1 flex-col overflow-x-hidden md:w-[1125px]">
           <div>
             <Locationsec />
           </div>
