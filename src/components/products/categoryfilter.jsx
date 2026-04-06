@@ -53,7 +53,7 @@ export default function Categoryfilter() {
               className="flex flex-col items-center p-2 cursor-pointer flex-shrink-0"
             >
               <div
-                className={`w-16 h-16 rounded-full overflow-x-hidden mb-2 border-2 transition-all duration-200 ${
+                className={`w-16 h-16 rounded-full overflow-hidden mb-2 border-2 transition-all duration-200 ${
                   isActive
                     ? "border-blue-500 scale-110"
                     : "border-transparent"
@@ -75,7 +75,7 @@ export default function Categoryfilter() {
       </div>
 
       {/* Desktop Sidebar */}
-      <div className="bg-white p-6 w-80 h-196 hidden lg:flex flex-col border border-slate-100 shadow-sm">
+      <div className="bg-white p-6 w-80 h-194 hidden lg:flex flex-col border border-slate-100 shadow-sm">
         <h3 className="text-xs font-bold text-slate-900 uppercase tracking-[0.2em] mb-6">
           Categories
         </h3>
